@@ -6,39 +6,40 @@ var gameData = {
         return gameData.list[Math.floor(Math.random() * this.list.length)];
     },
 
+    createBlankAnswer() {
+        for (var i = 0; i < this.constellation.length; i++) {
+
+            this.answerArray[i] = "_";
+        }
+    },
+
+    constellation: [],
+    answerArray: [],
+
+
 }
+
 
 document.getElementById('start-button').onclick = function () {
     document.getElementById('intro-body').style.display = "none";
-    document.getElementById('game-body').style.display= "inline";
+    document.getElementById('game-body').style.display = "inline";
+    gameData.constellation = gameData.chooseConst().split('');
     game();
+
 }
 
-function keypress () {
-    var press;
-    document.onkeyup = function (event) {
-        press =  event.key;
-    }
-    return press
-}
+// function keypress() {
+//     var press;
+//     document.onkeyup = function (event) {
+//         press = event.key;
+//     }
+//     return press
+// }
 
 function game() {
-    var constellation = gameData.chooseConst().split('');
-    for (var i = 0; i < constellation.length;) {
-        value = constellation[i];
-        press = keypress();
-        console.log(press)
-            if (press === value) {
-                alert("the same!");
-                console.log("finally", constellation[i]);
-                i++;
-            }
-
-            else {
-                alert("different!");
-            }
-        }
-
-        i++;
+    var length = gameData.constellation.length;
+    while (length > 0 ) {
+        
     }
+}
 
