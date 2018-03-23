@@ -1,45 +1,60 @@
 var gameData = {
-    list: ["orion", "ursa major", "scorpius", "cassiopeia", "ursa minor",
-        "canis major", "taurus", "leo", "gemini", "sagittarius",
-        "canis minor", "centaurus", "virgo", "libra"],
-    chooseConst() {
-        return gameData.list[Math.floor(Math.random() * this.list.length)];
+    list: ["orion", "scorpius", "cassiopeia", "taurus", "leo", "gemini", "sagittarius", "centaurus", "virgo", "libra"],
+    randomizer() {
+        var rndm = Math.floor(Math.random() * gameData.list.length);
+        this.selection = gameData.list[rndm].split("");
+    },
+    regEx: /^[A-Za-z]+$/,
+    blankArray() {
+        var blankArray = [];
+        this.selection.forEach(selection => {
+            var dick = document.createElement("div");
+            document.getElementById("answer-space").appendChild(dick);
+        });
+        this.gameArray = blankArray.split("");
+    },
+    scanner(pressKey) {
+        var array = [];
+        for (var i = 0; i < this.selection.length; i++) {
+            if (this.selection[i] === pressKey) {
+                this.gameArray[i] = this.selection[i]
+            }}
+            document.getElementById("answer-space").innerHTML = this.gameArray;
     },
 
-    createBlankAnswer() {
-        for (var i = 0; i < this.constellation.length; i++) {
-
-            this.answerArray[i] = "_";
-        }
-    },
-
-    constellation: [],
-    answerArray: [],
-
-
-}
-
-
-document.getElementById('start-button').onclick = function () {
-    document.getElementById('intro-body').style.display = "none";
-    document.getElementById('game-body').style.display = "inline";
-    gameData.constellation = gameData.chooseConst().split('');
-    game();
-
-}
-
-// function keypress() {
-//     var press;
-//     document.onkeyup = function (event) {
-//         press = event.key;
-//     }
-//     return press
-// }
-
-function game() {
-    var length = gameData.constellation.length;
-    while (length > 0 ) {
-        
+    scanner(pressKey) {
+        this.selection.forEach(function(element){
+            if (element === pressKey) {
+                console.log(element);
+            }
+        })}
     }
+
+gameData.randomizer();
+
+document.getElementById("start-button").onclick = function () {
+    document.getElementById("start-body").style.display = "none";
+    gameData.blankArray();
+};
+
+document.onkeyup = function (event) {
+    var pressKey = event.key;
+    console.log(gameData.regEx.test(pressKey))
+    console.log(pressKey, typeof (pressKey))
+    var result = gameData.scanner(pressKey);
+    console.log(result, typeof (result));
+    // if (result === -1){
+    //     alert("incorrect!");
+    // }
+    // else {
+    //     alert("correct!");
+    //     gameData.swapper(result);
+    // }
+
 }
 
+// var answerArray = [];
+//  for (var i = 0; i < word.length; i++) {
+//  answerArray[i] = "_";
+// }
+// var remainingLetters = word.length;
