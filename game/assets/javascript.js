@@ -1,10 +1,12 @@
 var gameData = {
     list: ["orion", "scorpius", "cassiopeia", "taurus", "leo", "gemini", "sagittarius", "centaurus", "virgo", "libra"],
+    
     randomizer() {
         var rndm = Math.floor(Math.random() * gameData.list.length);
         this.selection = gameData.list[rndm].split("");
     },
     regEx: /^[A-Za-z]+$/,
+
     blankArray() {
         var blankArray = [];
         this.selection.forEach(selection => {
@@ -22,27 +24,26 @@ var gameData = {
             document.getElementById("answer-space").innerHTML = this.gameArray;
     },
 
-    scanner(pressKey) {
-        this.selection.forEach(function(element){
-            if (element === pressKey) {
-                console.log(element);
-            }
-        })}
+    // scanner(pressKey) {
+    //     this.selection.forEach(function(element){
+    //         if (element === pressKey) {
+    //             console.log(element);
+    //         }
+    //     })}
     }
 
-gameData.randomizer();
 
 document.getElementById("start-button").onclick = function () {
     document.getElementById("start-body").style.display = "none";
+    gameData.randomizer();
     gameData.blankArray();
+
+
 };
 
 document.onkeyup = function (event) {
     var pressKey = event.key;
-    console.log(gameData.regEx.test(pressKey))
-    console.log(pressKey, typeof (pressKey))
-    var result = gameData.scanner(pressKey);
-    console.log(result, typeof (result));
+
     // if (result === -1){
     //     alert("incorrect!");
     // }
